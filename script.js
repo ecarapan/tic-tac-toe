@@ -6,12 +6,8 @@ const Gameboard = (function() {
         [0, 4, 8], [2, 4, 6]             
     ];
 
-    const getBoard = () => {
-        for (let i = 0; i < board.length; i+=3) {
-            console.log(board[i] + " | " + board[i + 1] + " | " + board[i + 2]);
-        }
-    };
-
+    const getBoard = () => board;
+    
     const placeToken = (index, player) => {
         if (board[index] === "") {
             board[index] = player.getMark();
@@ -93,11 +89,6 @@ const GameController = (function() {
 
     const getActivePlayer = () => activePlayer;
 
-    const printNewRound = () => {
-        Gameboard.getBoard();
-        console.log(`${getActivePlayer().getMark()}'s turn.`);
-    };
-
     const playRound = (index) => {
         if (!Gameboard.placeToken(index, activePlayer)) {
             return;
@@ -105,36 +96,62 @@ const GameController = (function() {
         
         const winner = Gameboard.getWinner();
         if (winner) {
-            return winner;
+           return winner;
         }
             
         switchPlayerTurn();
-        printNewRound();
     };
 
     return {
         getActivePlayer,
-        printNewRound,
         playRound
     };
 })();
 
 const ScreenController = (function() {
-    GameController.printNewRound();
-    let complete = false;
-    while (!complete) {
-        let input = Number(prompt(`${GameController.getActivePlayer().getMark()}, choose a spot (0–8):`));
+    const turnDiv = document.querySelector(".turn");
+    const boardDiv = document.querySelector(".board");
+    const announcementDiv = document.querySelector(".announcement")
+    
+    const updateScreen = () => {
+        boardDiv.textContent = "";
 
-        let result = GameController.playRound(input)
-        if (result) {
-            complete = true;
-            Gameboard.getBoard();
-            if (result === "tie") {
-                console.log("Tie!")
+        const board = Gameboard.getBoard();
+        const activePlayer = GameController.getActivePlayer();
+
+        turnDiv.textContent = `${activePlayer.getMark()}'s turn`
+
+        board.forEach((cell, index) => {
+            const cellButton = document.createElement("button");
+            cellButton.classList.add("cell");
+            cellButton.dataset.index = index;
+            cellButton.textContent = cell;
+
+            boardDiv.appendChild(cellButton);
+        });
+    }
+
+    function clickHandlerBoard(e) { 
+        const cellIndex = e.target.dataset.index
+
+        if (!cellIndex) return;
+
+        const winner = GameController.playRound(cellIndex);
+        updateScreen();
+
+        if (winner) {
+            if (winner === "tie") {
+                announcementDiv.textContent = "Tie!"
             } else {
-                console.log(`${GameController.getActivePlayer().getMark()} is the winner`);
+                announcementDiv.textContent = `${winner} wins!`
             }
         }
+        
     }
+    boardDiv.addEventListener("click", clickHandlerBoard);
+
+    updateScreen();
 })();
+
+
 
