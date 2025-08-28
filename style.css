@@ -26,6 +26,20 @@ html, body {
 }
 
 .board > .cell {
+  background-color: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   border: none;
+}
+
+.game-info, .board {
+  display: none; 
+}
+
+.next-round {
+  display: none; 
+}
+
+.board.disabled {
+  pointer-events: none;
+  opacity: 0.5; 
 }

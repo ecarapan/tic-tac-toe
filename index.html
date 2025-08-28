@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1 class="turn"></h1>
-        <div class="board"></div>
-        <h1 class="announcement"></h1>
+  <div class="container">
+    <div class="start-menu">
+      <input type="text" class="player-X-name" placeholder="Enter name for Player X">
+      <input type="text" class="player-O-name" placeholder="Enter name for Player O">
+      <button class="start-game">Start Game</button>
     </div>
+    <div class="game-info">
+      <h1 class="turn"></h1>
+      <h1 class="X-score"></h1>
+      <h1 class="O-score"></h1>
+      <h1 class="round"></h1>
+      <h1 class="announcement"></h1>
+      <button class="next-round">Next Round</button>
+      <button class="restart-game">Restart Game</button>
+    </div>
+    <div class="board"></div>
+  </div>
 </body>
 </html>
