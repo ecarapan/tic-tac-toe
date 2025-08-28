@@ -13,28 +13,44 @@
       <h1 class="title">Tic-Tac-Toe</h1>
       <div class="player-selection">
         <div class="x-selection">
-          <!-- <img src="images/x.png" alt="X" class="icon-x"> -->
           <p>X</p>
-          <input type="text" class="player-X-name" placeholder="Enter name">
+          <input type="text" class="player-X-name-input" placeholder="Enter name">
         </div>
         <div class="o-selection">
-          <!-- <img src="images/o.png" alt="X" class="icon-o"> -->
           <p>O</p>
-          <input type="text" class="player-O-name" placeholder="Enter name">
+          <input type="text" class="player-O-name-input" placeholder="Enter name">
         </div>
       </div>
       <button class="start-game">START GAME</button>
     </div>
-    <div class="game-info">
-      <h1 class="turn"></h1>
-      <h1 class="X-score"></h1>
-      <h1 class="O-score"></h1>
-      <h1 class="round"></h1>
-      <h1 class="announcement"></h1>
-      <button class="next-round">Next Round</button>
-      <button class="restart-game">Restart Game</button>
+    <div class="game-section hidden">
+      <div class="info">
+        <h1 class="round"></h1>
+        <h1 class="announcement"></h1>
+        <h1 class="turn"></h1>
+      </div>
+      <div class="game-actions">
+        <div class="x-side">
+          <div class="x-card">
+            <p>X</p>
+            <p class="player-X-name"></p>
+          </div>
+          <h1 class="X-score">Wins: 0</h1>
+        </div>
+        <div class="board"></div>
+        <div class="o-side">
+          <div class="o-card">
+            <p>O</p>
+            <p class="player-O-name"></p>
+          </div>
+          <h1 class="O-score">Wins: 0</h1>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="next-round">Next Round</button>
+        <button class="restart-game">Restart Game</button>
+      </div>
     </div>
-    <div class="board"></div>
   </div>
 </body>
 </html>

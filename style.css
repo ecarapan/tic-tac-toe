@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
 
 * {
@@ -6,6 +5,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Outfit', sans-serif;
+  /* border: 1px solid red; */
 }
 
 
@@ -20,15 +20,6 @@ html, body {
   align-items: center;
   height: 100%; 
   background-color: #1a2b33;
-}
-
-.board {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  grid-template-rows: repeat(3, 1fr);    
-  gap: 5px; 
-  width: 400px;   
-  height: 400px;  
 }
 
 .start-menu {
@@ -107,24 +98,96 @@ html, body {
   color: white;
 }
 
-.start-game:active,
 .start-game:hover {
   transform: scale(1.08);
   box-shadow: 0 6px 24px 0 rgba(0,0,0,0.25);
   transition: box-shadow 0.1s, transform 0.1s;
 }
 
-.game-info, .board {
-  display: none; 
+.game-section {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  padding: 100px 200px;
+  color: white;
+
+}
+
+.hidden {
+  display: none;
+}
+
+.info {
+  display: flex;
+  gap: 20px;
+  background-color: #27414e;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.game-actions {
+  display: flex;
+  gap: 100px;
+}
+
+.x-card, .o-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 30px 40px;
+  gap: 40px;
+  background-color: #1a2b33;
+  text-align: center;
+  font-size: 8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.x-card {
+  background-color: rgb(211, 43, 43);
+}
+
+.o-card {
+  background-color: rgb(58, 58, 219);
+}
+
+.x-side, .o-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.player-X-name, .player-O-name {
+  font-size: 2rem;
+}
+
+.actions {
+  display: flex;
+  gap: 100px;
+}
+
+.actions button {
+  padding: 20px 80px;
+  background-color: #27414e;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 10px 7px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.actions button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px 0 rgba(0,0,0,0.25);
+  transition: box-shadow 0.1s, transform 0.1s;
 }
 
 .next-round {
   display: none; 
-}
-
-.board.disabled {
-  pointer-events: none;
-  opacity: 0.5; 
 }
 
 .icon-x {
@@ -143,9 +206,46 @@ html, body {
   margin: 0 auto;
 }
 
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-template-rows: repeat(3, 1fr);    
+  gap: 15px; 
+  width: 400px;   
+  height: 400px;  
+}
+
+.board.disabled {
+  pointer-events: none;
+  opacity: 0.5; 
+}
+
 .cell {
   border: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: #27414e;
   border-radius: 10px;
+  color: white;
+}
+
+.cell:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px 0 rgba(0,0,0,0.25);
+  transition: box-shadow 0.1s, transform 0.1s;
+}
+
+.cell-x {
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background-color: rgb(211, 43, 43);
+  border-radius: 10px;
+  color: white;
+}
+
+.cell-o {
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background-color: rgb(58, 58, 219);
+  border-radius: 10px;
+  color: white;
 }

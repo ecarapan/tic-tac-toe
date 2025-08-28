@@ -148,16 +148,18 @@ const ScreenController = (function() {
     const boardDiv = document.querySelector(".board");
     const announcementDiv = document.querySelector(".announcement")
     const startMenuDiv = document.querySelector(".start-menu");
-    const playerXInput = document.querySelector(".player-X-name");
-    const playerOInput = document.querySelector(".player-O-name");
+    const playerXInput = document.querySelector(".player-X-name-input");
+    const playerOInput = document.querySelector(".player-O-name-input");
     const startGameButton = document.querySelector(".start-game");
     const xScoreDiv = document.querySelector(".X-score");
     const oScoreDiv = document.querySelector(".O-score");
     const roundDiv = document.querySelector(".round");
     const nextRoundButton = document.querySelector(".next-round");
     const restartGameButton = document.querySelector(".restart-game");
-    const gameInfoDiv = document.querySelector(".game-info");
-    
+    const gameSectionDiv = document.querySelector(".game-section");
+    const playerXName = document.querySelector(".player-X-name");
+    const playerOName = document.querySelector(".player-O-name");
+
     const updateScreen = () => {
         boardDiv.textContent = "";
 
@@ -165,8 +167,11 @@ const ScreenController = (function() {
         const activePlayer = GameController.getActivePlayer();
 
         turnDiv.textContent = `${activePlayer.getName()} with ${activePlayer.getMark()}'s turn`;
-        xScoreDiv.textContent = `Player X Score: ${playerX.getScore()}`;
-        oScoreDiv.textContent = `Player O Score: ${playerO.getScore()}`;
+        playerXName.textContent = playerX.getName();
+        playerOName.textContent = playerO.getName();
+
+        xScoreDiv.textContent = `Wins: ${playerX.getScore()}`;
+        oScoreDiv.textContent = `Wins: ${playerO.getScore()}`;
         roundDiv.textContent = `Round: ${GameController.getRound()}`;
 
         board.forEach((cell, index) => {
@@ -174,9 +179,13 @@ const ScreenController = (function() {
             cellButton.classList.add("cell");
             cellButton.dataset.index = index;
             if (cell === "X") {
-                cellButton.innerHTML = '<img src="images/x.png" alt="X" class="icon-x">';
+                cellButton.textContent = "X"
+                cellButton.classList.remove("cell");
+                cellButton.classList.add(".cell-x");
             } else if (cell === "O") {
-                cellButton.innerHTML = '<img src="images/o.png" alt="O" class="icon-o">';
+                cellButton.textContent = "O"
+                cellButton.classList.remove("cell");
+                cellButton.classList.add(".cell-o");
             }
             boardDiv.appendChild(cellButton);
         });
@@ -207,7 +216,7 @@ const ScreenController = (function() {
 
         startMenuDiv.style.display = "none"; 
         boardDiv.style.display = "grid"; 
-        gameInfoDiv.style.display = "grid";
+        gameSectionDiv.classList.remove("hidden");
 
         updateScreen();
     };
