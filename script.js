@@ -173,8 +173,11 @@ const ScreenController = (function() {
             const cellButton = document.createElement("button");
             cellButton.classList.add("cell");
             cellButton.dataset.index = index;
-            cellButton.textContent = cell;
-
+            if (cell === "X") {
+                cellButton.innerHTML = '<img src="images/x.png" alt="X" class="icon-x">';
+            } else if (cell === "O") {
+                cellButton.innerHTML = '<img src="images/o.png" alt="O" class="icon-o">';
+            }
             boardDiv.appendChild(cellButton);
         });
     };
