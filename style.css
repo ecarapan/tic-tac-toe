@@ -153,6 +153,15 @@ html, body {
   background-color: rgb(58, 58, 219);
 }
 
+.selected-player {
+  border: 2px solid white;
+}
+
+.unselected-player {
+  transform: scale(0.8);
+  transition: box-shadow 0.1s, transform 0.1s;
+}
+
 .x-side, .o-side {
   display: flex;
   flex-direction: column;
@@ -226,6 +235,8 @@ html, body {
   background-color: #27414e;
   border-radius: 10px;
   color: white;
+  font-size: 4rem;
+  font-weight: bold;
 }
 
 .cell:hover {
@@ -235,17 +246,9 @@ html, body {
 }
 
 .cell-x {
-  border: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   background-color: rgb(211, 43, 43);
-  border-radius: 10px;
-  color: white;
 }
 
 .cell-o {
-  border: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   background-color: rgb(58, 58, 219);
-  border-radius: 10px;
-  color: white;
 }

@@ -144,7 +144,6 @@ const GameController = (function() {
 })();
 
 const ScreenController = (function() {
-    const turnDiv = document.querySelector(".turn");
     const boardDiv = document.querySelector(".board");
     const announcementDiv = document.querySelector(".announcement")
     const startMenuDiv = document.querySelector(".start-menu");
@@ -159,6 +158,9 @@ const ScreenController = (function() {
     const gameSectionDiv = document.querySelector(".game-section");
     const playerXName = document.querySelector(".player-X-name");
     const playerOName = document.querySelector(".player-O-name");
+    const xCardDiv = document.querySelector(".x-card");
+    const oCardDiv = document.querySelector(".o-card");
+
 
     const updateScreen = () => {
         boardDiv.textContent = "";
@@ -166,9 +168,22 @@ const ScreenController = (function() {
         const board = Gameboard.getBoard();
         const activePlayer = GameController.getActivePlayer();
 
-        turnDiv.textContent = `${activePlayer.getName()} with ${activePlayer.getMark()}'s turn`;
         playerXName.textContent = playerX.getName();
         playerOName.textContent = playerO.getName();
+
+        xCardDiv.classList.remove("selected-player", "unselected-player");
+        oCardDiv.classList.remove("selected-player", "unselected-player");
+        if (activePlayer.getMark() === "X") {
+            xCardDiv.classList.remove("unselected-player");
+            
+            xCardDiv.classList.add("selected-player");
+            oCardDiv.classList.add("unselected-player");
+        } else if (activePlayer.getMark() === "O") {
+            oCardDiv.classList.remove("unselected-player");
+
+            oCardDiv.classList.add("selected-player");
+            xCardDiv.classList.add("unselected-player");
+        }
 
         xScoreDiv.textContent = `Wins: ${playerX.getScore()}`;
         oScoreDiv.textContent = `Wins: ${playerO.getScore()}`;
@@ -180,12 +195,10 @@ const ScreenController = (function() {
             cellButton.dataset.index = index;
             if (cell === "X") {
                 cellButton.textContent = "X"
-                cellButton.classList.remove("cell");
-                cellButton.classList.add(".cell-x");
+                cellButton.classList.add("cell-x");
             } else if (cell === "O") {
                 cellButton.textContent = "O"
-                cellButton.classList.remove("cell");
-                cellButton.classList.add(".cell-o");
+                cellButton.classList.add("cell-o");
             }
             boardDiv.appendChild(cellButton);
         });
